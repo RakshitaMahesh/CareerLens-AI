@@ -393,7 +393,7 @@ function generateRecommendations(missingSkills) {
 
 app.get("/", (req, res) => {
   res.json({
-    message: "SkillSync AI Backend",
+    message: "CareerLens AI Backend",
     status: "running"
   });
 });
@@ -405,7 +405,7 @@ app.get("/", (req, res) => {
 app.get("/api/health", (req, res) => {
   res.json({
     status: "ok",
-    message: "SkillSync AI backend is running"
+    message: "CareerLens AI backend is running"
   });
 });
 
