@@ -739,31 +739,4 @@ app.use(
 // START SERVER
 // ==========================================
 
-app.listen(
-  PORT,
-  () => {
-    console.log("");
-    console.log(
-      "========================================"
-    );
-    console.log(
-      "          SkillSync AI Backend"
-    );
-    console.log(
-      "========================================"
-    );
-    console.log(
-      `Server: http://localhost:${PORT}`
-    );
-    console.log(
-      `Health: http://localhost:${PORT}/api/health`
-    );
-    console.log(
-      "Backend is running..."
-    );
-    console.log(
-      "========================================"
-    );
-    console.log("");
-  }
-);
+module.exports = app;
