@@ -164,7 +164,7 @@ function Analyzer({ onBack, onAnalyze }) {
       );
 
       const response = await fetch(
-        "/api/analyze",
+        "https://career-lens-backend-ten.vercel.app/api/analyze",
         {
           method: "POST",
           body: formData,
