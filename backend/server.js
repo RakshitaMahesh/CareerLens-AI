@@ -2,13 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const multer = require("multer");
-const fs = require("fs");
-const path = require("path");
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 // ==========================================
 // MIDDLEWARE
@@ -22,29 +19,8 @@ app.use(express.urlencoded({ extended: true }));
 // FILE UPLOAD
 // ==========================================
 
-const uploadDir = path.join(__dirname, "uploads");
-
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, uploadDir);
-  },
-
-  filename: function (req, file, cb) {
-    const uniqueName =
-      Date.now() +
-      "-" +
-      file.originalname.replace(/\s+/g, "-");
-
-    cb(null, uniqueName);
-  }
-});
-
 const upload = multer({
-  storage: storage,
+  storage: multer.memoryStorage(),
   limits: {
     fileSize: 10 * 1024 * 1024
   }
@@ -136,7 +112,7 @@ function normalizeText(text) {
 // ==========================================
 
 function extractSkills(text) {
-  const normalized = normalizeText(text);
+  const normalized = normalizeText(text || "");
 
   const foundSkills = [];
 
@@ -179,7 +155,7 @@ function getCareerFit(match) {
 // ==========================================
 
 function getTargetRole(jobDescription) {
-  const text = jobDescription.toLowerCase();
+  const text = (jobDescription || "").toLowerCase();
 
   if (
     text.includes("machine learning engineer") ||
@@ -240,7 +216,7 @@ function generateRoadmap(missingSkills) {
   const roadmap = [];
 
   const descriptions = {
-    "Python":
+    Python:
       "Improve Python programming, functions, OOP and problem solving.",
 
     "Machine Learning":
@@ -249,31 +225,31 @@ function generateRoadmap(missingSkills) {
     "Deep Learning":
       "Learn neural networks, CNNs, RNNs, backpropagation and model training.",
 
-    "TensorFlow":
+    TensorFlow:
       "Learn TensorFlow, Keras, model building, training and evaluation.",
 
-    "PyTorch":
+    PyTorch:
       "Learn PyTorch tensors, neural networks, training loops and optimization.",
 
-    "Pandas":
+    Pandas:
       "Learn DataFrames, data cleaning, filtering, grouping and data analysis.",
 
-    "NumPy":
+    NumPy:
       "Practice arrays, vectorization and numerical operations.",
 
-    "NLP":
+    NLP:
       "Learn text preprocessing, tokenization, embeddings, transformers and sentiment analysis.",
 
     "Natural Language Processing":
       "Learn text preprocessing, tokenization, embeddings and transformer-based NLP.",
 
-    "Docker":
+    Docker:
       "Learn containerization and practice deploying applications.",
 
-    "SQL":
+    SQL:
       "Practice queries, joins, filtering, aggregation and database design.",
 
-    "Git":
+    Git:
       "Learn version control, branching, merging and collaborative development.",
 
     "Generative AI":
@@ -285,28 +261,28 @@ function generateRoadmap(missingSkills) {
     "Cloud Computing":
       "Learn cloud concepts, deployment, storage and scalable application development.",
 
-    "AWS":
+    AWS:
       "Learn AWS fundamentals and deploy applications using cloud services.",
 
-    "React":
+    React:
       "Build responsive interfaces using components, state and React hooks.",
 
     "Node.js":
       "Learn backend development, APIs, asynchronous programming and server applications.",
 
-    "MongoDB":
+    MongoDB:
       "Learn document databases, CRUD operations and MongoDB integration.",
 
     "Scikit-learn":
       "Practice preprocessing, model training, evaluation and machine learning pipelines.",
 
-    "Keras":
+    Keras:
       "Build and train neural network models using Keras.",
 
     "Data Structures":
       "Practice arrays, linked lists, stacks, queues, trees and graphs.",
 
-    "Algorithms":
+    Algorithms:
       "Practice searching, sorting, graph algorithms and algorithmic problem solving.",
 
     "Problem Solving":
@@ -315,16 +291,16 @@ function generateRoadmap(missingSkills) {
     "Power BI":
       "Learn dashboards, data modeling and business intelligence visualization.",
 
-    "Tableau":
+    Tableau:
       "Build interactive dashboards and analyze business datasets.",
 
     "Prompt Engineering":
       "Learn effective prompting techniques for modern generative AI systems.",
 
-    "LangChain":
+    LangChain:
       "Learn how to build applications using LLM workflows and LangChain.",
 
-    "Transformers":
+    Transformers:
       "Learn transformer architecture, attention mechanisms and NLP applications."
   };
 
@@ -338,9 +314,11 @@ function generateRoadmap(missingSkills) {
           : index < 3
           ? "Important"
           : "Recommended",
+
       description:
         descriptions[skill] ||
         `Develop practical ${skill} knowledge and apply it through projects.`,
+
       difficulty:
         index < 3 ? "Advanced" : "Core"
     });
@@ -359,31 +337,31 @@ function generateRecommendations(missingSkills) {
       "Deep Learning":
         "Learn neural networks, CNNs, RNNs and model training.",
 
-      "TensorFlow":
+      TensorFlow:
         "Practice TensorFlow and Keras by building machine learning models.",
 
-      "PyTorch":
+      PyTorch:
         "Learn PyTorch tensors, neural networks and training loops.",
 
-      "Pandas":
+      Pandas:
         "Improve Pandas skills for data cleaning, filtering and analysis.",
 
-      "NumPy":
+      NumPy:
         "Practice NumPy arrays, vectorization and numerical operations.",
 
-      "NLP":
+      NLP:
         "Learn NLP preprocessing, embeddings, transformers and sentiment analysis.",
 
-      "Docker":
+      Docker:
         "Learn Docker and practice deploying AI applications.",
 
       "Machine Learning":
         "Strengthen machine learning fundamentals and build practical models.",
 
-      "Python":
+      Python:
         "Improve Python programming through problem solving and real-world projects.",
 
-      "SQL":
+      SQL:
         "Practice SQL queries, joins, aggregation and database operations.",
 
       "Generative AI":
@@ -392,10 +370,10 @@ function generateRecommendations(missingSkills) {
       "Cloud Computing":
         "Learn cloud deployment and scalable application development.",
 
-      "AWS":
+      AWS:
         "Practice deploying applications using AWS cloud services.",
 
-      "React":
+      React:
         "Build React projects using components, hooks and state management.",
 
       "Data Structures":
@@ -440,7 +418,6 @@ app.post(
   upload.single("resume"),
   async (req, res) => {
     try {
-      console.log("");
       console.log("======================================");
       console.log("RESUME ANALYSIS REQUEST");
       console.log("======================================");
@@ -456,10 +433,7 @@ app.post(
         });
       }
 
-      console.log(
-        "Resume:",
-        req.file.originalname
-      );
+      console.log("Resume:", req.file.originalname);
 
       // ----------------------------------
       // GET JOB DESCRIPTION
@@ -467,12 +441,6 @@ app.post(
 
       const jobDescription =
         req.body.jobDescription || "";
-
-      console.log(
-        "Job description:",
-        jobDescription.length,
-        "characters"
-      );
 
       if (!jobDescription.trim()) {
         return res.status(400).json({
@@ -485,16 +453,15 @@ app.post(
       // RESUME TEXT
       // ----------------------------------
 
-      /*
-        The frontend already extracts the
-        resume text using PDF.js.
-
-        It is sent separately through the
-        request as resumeText.
-      */
-
       const resumeText =
         req.body.resumeText || "";
+
+      if (!resumeText.trim()) {
+        return res.status(400).json({
+          success: false,
+          message: "Could not extract resume text."
+        });
+      }
 
       // ----------------------------------
       // EXTRACT SKILLS
@@ -506,16 +473,11 @@ app.post(
       const jobSkills =
         extractSkills(jobDescription);
 
-      console.log("");
-      console.log("Resume Skills:");
-      console.log(resumeSkills);
-
-      console.log("");
-      console.log("Job Skills:");
-      console.log(jobSkills);
+      console.log("Resume Skills:", resumeSkills);
+      console.log("Job Skills:", jobSkills);
 
       // ----------------------------------
-      // IF JOB SKILLS ARE FOUND
+      // MATCH SKILLS
       // ----------------------------------
 
       let matchedSkills = [];
@@ -536,11 +498,6 @@ app.post(
             !matchedSkills.includes(skill)
         );
       } else {
-        /*
-          Fallback if the job description
-          does not contain recognized skills.
-        */
-
         matchedSkills = resumeSkills.slice(0, 6);
 
         missingSkills = [
@@ -570,7 +527,6 @@ app.post(
         jobMatch = 50;
       }
 
-      // Keep score between 0 and 100
       jobMatch = Math.max(
         0,
         Math.min(100, jobMatch)
@@ -611,8 +567,7 @@ app.post(
       // ----------------------------------
 
       const analysis = {
-        resume:
-          req.file.originalname,
+        resume: req.file.originalname,
 
         targetRole,
 
@@ -634,82 +589,24 @@ app.post(
         careerRoadmap
       };
 
-      // ----------------------------------
-      // CONSOLE OUTPUT
-      // ----------------------------------
-
-      console.log("");
-      console.log("MATCHED SKILLS:");
-      console.log(matchedSkills);
-
-      console.log("");
-      console.log("MISSING SKILLS:");
-      console.log(missingSkills);
-
-      console.log("");
-      console.log(
-        "Match:",
-        jobMatch + "%"
-      );
-
-      console.log(
-        "Career Fit:",
-        careerFit
-      );
-
-      console.log(
-        "Target Role:",
-        targetRole
-      );
-
-      console.log(
-        "======================================"
-      );
-
-      // ----------------------------------
-      // DELETE FILE
-      // ----------------------------------
-
-      try {
-        fs.unlinkSync(
-          req.file.path
-        );
-      } catch (deleteError) {
-        console.log(
-          "Could not delete uploaded file."
-        );
-      }
+      console.log("Match:", jobMatch + "%");
+      console.log("Career Fit:", careerFit);
+      console.log("Target Role:", targetRole);
 
       // ----------------------------------
       // SEND RESULT
       // ----------------------------------
 
-      res.json({
+      return res.json({
         success: true,
-        message:
-          "Resume analyzed successfully",
+        message: "Resume analyzed successfully",
         data: analysis
       });
 
     } catch (error) {
-      console.error(
-        "Analysis error:",
-        error
-      );
+      console.error("Analysis error:", error);
 
-      // Delete file if possible
-      if (
-        req.file &&
-        req.file.path
-      ) {
-        try {
-          fs.unlinkSync(
-            req.file.path
-          );
-        } catch (e) {}
-      }
-
-      res.status(500).json({
+      return res.status(500).json({
         success: false,
         message:
           "Something went wrong while analyzing the resume.",
@@ -723,20 +620,18 @@ app.post(
 // ERROR HANDLER
 // ==========================================
 
-app.use(
-  (err, req, res, next) => {
-    console.error(err);
+app.use((err, req, res, next) => {
+  console.error(err);
 
-    res.status(500).json({
-      success: false,
-      message: "Server error",
-      error: err.message
-    });
-  }
-);
+  res.status(500).json({
+    success: false,
+    message: "Server error",
+    error: err.message
+  });
+});
 
 // ==========================================
-// START SERVER
+// VERCEL EXPORT
 // ==========================================
 
 module.exports = app;
