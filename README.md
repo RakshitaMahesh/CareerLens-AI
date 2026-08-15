@@ -85,3 +85,11 @@ CareerLens-AI/
 │
 ├── .gitignore
 └── README.md
+
+
+
+
+
+## 📸 Project Preview
+
+![CareerLens AI Homepage](screenshots/homepage.png)
