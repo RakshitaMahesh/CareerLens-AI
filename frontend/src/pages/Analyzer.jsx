@@ -164,7 +164,7 @@ function Analyzer({ onBack, onAnalyze }) {
       );
 
       const response = await fetch(
-        "http://localhost:5000/api/analyze",
+        "/api/analyze",
         {
           method: "POST",
           body: formData,
