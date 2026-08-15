@@ -1,0 +1,784 @@
+/* ================================
+   ANALYZER PAGE
+================================ */
+
+.analyzer-page {
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(104, 45, 180, 0.18),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(24, 160, 190, 0.12),
+      transparent 35%
+    ),
+    #070914;
+
+  color: #ffffff;
+
+  padding-bottom: 80px;
+
+  font-family:
+    Inter,
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.analyzer-header {
+  width: 100%;
+  max-width: 1280px;
+
+  margin: auto;
+
+  padding: 28px 40px;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+}
+
+.back-button {
+  background: transparent;
+
+  border: none;
+
+  color: #9ca3c7;
+
+  font-size: 15px;
+
+  cursor: pointer;
+
+  padding: 10px 0;
+
+  transition: 0.2s ease;
+}
+
+.back-button:hover {
+  color: #ffffff;
+}
+
+.analyzer-logo {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-left: 30px;
+
+  font-size: 24px;
+
+  font-weight: 800;
+}
+
+.analyzer-logo span span {
+  background: linear-gradient(
+    90deg,
+    #8b5cf6,
+    #38bdf8
+  );
+
+  -webkit-background-clip: text;
+   background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.analyzer-logo small {
+  color: #c084fc;
+
+  font-size: 13px;
+
+  margin-left: 3px;
+}
+
+.logo-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #06b6d4
+    );
+
+  font-size: 22px;
+
+  box-shadow:
+    0 10px 35px
+    rgba(124, 58, 237, 0.35);
+}
+
+.header-spacer {
+  flex: 1;
+}
+
+
+/* ================================
+   INTRO
+================================ */
+
+.analyzer-intro {
+  width: 100%;
+  max-width: 1000px;
+
+  margin: 50px auto 65px;
+
+  padding: 0 30px;
+
+  box-sizing: border-box;
+
+  text-align: center;
+}
+
+.intro-label {
+  display: inline-block;
+
+  padding: 10px 18px;
+
+  border: 1px solid
+    rgba(139, 92, 246, 0.4);
+
+  border-radius: 30px;
+
+  color: #b9a3ff;
+
+  background:
+    rgba(91, 33, 182, 0.08);
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+
+  margin-bottom: 22px;
+}
+
+.analyzer-intro h1 {
+  margin: 0;
+
+  font-size: clamp(
+    48px,
+    7vw,
+    82px
+  );
+
+  line-height: 1.05;
+
+  font-weight: 800;
+
+  letter-spacing: -3px;
+}
+
+.analyzer-intro h1 span {
+  background:
+    linear-gradient(
+      90deg,
+      #a78bfa,
+      #38bdf8,
+      #ec4899
+    );
+
+  -webkit-background-clip: text;
+   background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.analyzer-intro p {
+  max-width: 760px;
+
+  margin: 25px auto 0;
+
+  color: #8e96b8;
+
+  font-size: 17px;
+
+  line-height: 1.8;
+}
+
+
+/* ================================
+   MAIN CONTAINER
+================================ */
+
+.analyzer-container {
+  width: 100%;
+
+  max-width: 1450px;
+
+  margin: auto;
+
+  padding: 0 35px;
+
+  box-sizing: border-box;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 28px;
+}
+
+
+/* ================================
+   CARDS
+================================ */
+
+.analyzer-card {
+  min-height: 500px;
+
+  padding: 32px;
+
+  box-sizing: border-box;
+
+  border-radius: 25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(25, 29, 53, 0.92),
+      rgba(12, 15, 29, 0.95)
+    );
+
+  border: 1px solid
+    rgba(93, 102, 148, 0.3);
+
+  box-shadow:
+    0 30px 70px
+    rgba(0, 0, 0, 0.25);
+}
+
+
+/* ================================
+   CARD HEADING
+================================ */
+
+.card-heading {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 30px;
+}
+
+.heading-icon {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    rgba(99, 72, 190, 0.22);
+
+  font-size: 23px;
+}
+
+.target-icon {
+  background:
+    rgba(34, 150, 210, 0.18);
+}
+
+.card-heading h2 {
+  margin: 0;
+
+  font-size: 21px;
+
+  font-weight: 750;
+}
+
+.card-heading p {
+  margin: 5px 0 0;
+
+  color: #727b9d;
+
+  font-size: 13px;
+}
+
+.step-number {
+  margin-left: auto;
+
+  color: #667093;
+
+  font-size: 12px;
+}
+
+
+/* ================================
+   UPLOAD AREA
+================================ */
+
+.upload-area {
+  min-height: 330px;
+
+  border-radius: 20px;
+
+  border: 1px dashed
+    rgba(139, 92, 246, 0.65);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+
+  background:
+    rgba(60, 42, 120, 0.06);
+
+  transition: all 0.25s ease;
+}
+
+.upload-area:hover {
+  background:
+    rgba(99, 70, 180, 0.12);
+
+  border-color: #9b7cff;
+}
+
+.upload-icon {
+  width: 70px;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 18px;
+
+  background:
+    rgba(103, 72, 190, 0.2);
+
+  color: #a78bfa;
+
+  font-size: 32px;
+
+  margin-bottom: 20px;
+}
+
+.upload-area h3 {
+  margin: 0;
+
+  font-size: 17px;
+}
+
+.browse-text {
+  margin: 10px 0 0;
+
+  color: #8b5cf6;
+
+  font-size: 14px;
+}
+
+.pdf-text {
+  margin-top: 12px;
+
+  color: #707896;
+
+  font-size: 13px;
+}
+
+
+/* ================================
+   UPLOADED FILE
+================================ */
+
+.uploaded-area {
+  min-height: 330px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.uploaded-file {
+  width: 100%;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  border-radius: 18px;
+
+  background:
+    rgba(31, 41, 64, 0.75);
+
+  border: 1px solid
+    rgba(76, 91, 130, 0.45);
+}
+
+.file-icon {
+  width: 55px;
+  height: 55px;
+
+  border-radius: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    rgba(30, 200, 170, 0.12);
+
+  font-size: 24px;
+}
+
+.file-details {
+  margin-left: 15px;
+
+  min-width: 0;
+}
+
+.file-details h3 {
+  margin: 0;
+
+  font-size: 15px;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.file-details p {
+  margin: 6px 0 0;
+
+  color: #68718f;
+
+  font-size: 12px;
+}
+
+.file-check {
+  margin-left: auto;
+
+  color: #34d399;
+
+  font-size: 24px;
+}
+
+.extracting-message,
+.success-message {
+  margin-top: 20px;
+
+  font-size: 14px;
+}
+
+.extracting-message {
+  color: #fbbf24;
+}
+
+.success-message {
+  color: #34d399;
+}
+
+.change-file {
+  align-self: center;
+
+  margin-top: 25px;
+
+  color: #9b7cff;
+
+  cursor: pointer;
+
+  font-size: 14px;
+}
+
+
+/* ================================
+   JOB DESCRIPTION
+================================ */
+
+.job-description-wrapper {
+  width: 100%;
+}
+
+.job-description-wrapper > label {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: #a8aec8;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+/* THIS FIXES YOUR MAIN PROBLEM */
+
+.job-description-input {
+  display: block !important;
+
+  width: 100% !important;
+
+  min-height: 330px !important;
+
+  height: 330px !important;
+
+  box-sizing: border-box !important;
+
+  padding: 20px !important;
+
+  margin: 0 !important;
+
+  border-radius: 18px !important;
+
+  border: 1px solid
+    #353b5b !important;
+
+  outline: none !important;
+
+  background:
+    #090c18 !important;
+
+  color: #ffffff !important;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif !important;
+
+  font-size: 15px !important;
+
+  line-height: 1.7 !important;
+
+  resize: vertical !important;
+
+  cursor: text !important;
+
+  appearance: none !important;
+
+  -webkit-appearance: none !important;
+}
+
+.job-description-input:hover {
+  border-color:
+    #4c5680 !important;
+}
+
+.job-description-input:focus {
+  border-color:
+    #8b5cf6 !important;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(139, 92, 246, 0.15) !important;
+}
+
+.job-description-input::placeholder {
+  color:
+    #68708c !important;
+
+  opacity: 1 !important;
+}
+
+.textarea-footer {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 10px;
+
+  color: #606984;
+
+  font-size: 12px;
+}
+
+
+/* ================================
+   ANALYZE BUTTON
+================================ */
+
+.analyze-section {
+  display: flex;
+
+  justify-content: center;
+
+  margin-top: 42px;
+}
+
+.analyze-button {
+  min-width: 350px;
+
+  padding: 18px 30px;
+
+  border: none;
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      100deg,
+      #8b3ff0,
+      #2563eb
+    );
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 15px 35px
+    rgba(90, 55, 210, 0.25);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.analyze-button:hover:not(:disabled) {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 20px 45px
+    rgba(90, 55, 210, 0.35);
+}
+
+.analyze-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+.analyze-button span {
+  margin-left: 15px;
+
+  font-size: 22px;
+}
+
+
+/* ================================
+   INFO
+================================ */
+
+.analyzer-info {
+  max-width: 1000px;
+
+  margin: 45px auto 0;
+
+  padding: 0 30px;
+
+  display: flex;
+
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 15px;
+}
+
+.analyzer-info div {
+  padding: 10px 15px;
+
+  color: #727b9a;
+
+  font-size: 12px;
+}
+
+.analyzer-info span {
+  color: #9b7cff;
+
+  margin-right: 6px;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 900px) {
+
+  .analyzer-container {
+    grid-template-columns: 1fr;
+
+    padding: 0 20px;
+  }
+
+  .analyzer-intro {
+    margin-top: 30px;
+  }
+
+  .analyzer-intro h1 {
+    font-size: 50px;
+  }
+
+  .analyzer-header {
+    padding: 20px;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .analyzer-intro h1 {
+    font-size: 40px;
+
+    letter-spacing: -1px;
+  }
+
+  .analyzer-intro p {
+    font-size: 14px;
+  }
+
+  .analyzer-card {
+    padding: 20px;
+  }
+
+  .upload-area,
+  .uploaded-area {
+    min-height: 280px;
+  }
+
+  .job-description-input {
+    height: 280px !important;
+
+    min-height: 280px !important;
+  }
+
+  .analyze-button {
+    min-width: 280px;
+  }
+
+}
