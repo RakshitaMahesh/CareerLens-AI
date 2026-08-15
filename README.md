@@ -1,4 +1,7 @@
 # 🚀 CareerLens AI
+## 🌐 Live Demo
+
+👉 [CareerLens AI – Live Website](https://career-lens-ai-iota.vercel.app/)
 
 ### AI-Powered Resume & Career Analysis Platform
 
