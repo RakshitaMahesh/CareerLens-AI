@@ -234,7 +234,7 @@ function Analyzer({ onBack, onAnalyze }) {
           </div>
 
           <span>
-            Skill<span>Sync</span>{" "}
+            Career<span>Lens</span>{" "}
             <small>AI</small>
           </span>
 
